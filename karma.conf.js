@@ -1,3 +1,8 @@
+/* jshint node: true */
+
+var webpackConfig = require('./webpack.config.js');
+webpackConfig.devtool = 'inline-source-map';
+
 module.exports = function(config) {
   config.set({
     basePath: '.',
@@ -5,13 +10,21 @@ module.exports = function(config) {
     frameworks: ['jasmine'],
     browsers: ['PhantomJS'],
 
+    plugins: [
+      "karma-jasmine",
+      "karma-phantomjs-launcher",
+      "karma-sourcemap-loader",
+      "karma-webpack"
+    ],
+
     files: [
       // shim to workaroud PhantomJS 1.x lack of `bind` support
       // see: https://github.com/ariya/phantomjs/issues/10522
       'node_modules/es5-shim/es5-shim.js',
 
       // React is an external dependency of the component
-      'node_modules/react/dist/react-with-addons.js',
+      'node_modules/react/dist/react.js',
+      'node_modules/react-dom/dist/react-dom.js',
 
       'spec/spec-helper.js',
       'spec/**/*.spec.*',
@@ -23,7 +36,7 @@ module.exports = function(config) {
       'spec/**/*.spec.*': ['webpack', 'sourcemap']
     },
 
-    webpack: loadWebpackConfig(),
+    webpack: webpackConfig,
 
     webpackServer: {
       noInfo: true
@@ -32,13 +45,3 @@ module.exports = function(config) {
     singleRun: true
   });
 };
-
-
-/**
-  Loads configuration while ensuring sounce-map is enabled
- */
-function loadWebpackConfig () {
-  var webpackConfig = require('./webpack.config.js');
-  webpackConfig.devtool = 'inline-source-map';
-  return webpackConfig;
-}

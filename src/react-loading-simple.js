@@ -10,13 +10,13 @@ var ReactLoadingSimple = React.createClass({
 	},
 
 	getDefaultProps: function() {
-		return {type: "balls"};
+		return {type: 'balls'};
 	},
 
 	render: function() {
 		var svg = svgSources[this.props.type];
 		return (
-			<div className="react-loading-simple" dangerouslySetInnerHTML={{__html: svg}}>
+			<div className='react-loading-simple' dangerouslySetInnerHTML={{__html: svg}}>
 			</div>
 		);
 	}

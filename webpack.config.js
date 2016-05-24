@@ -1,32 +1,51 @@
-/* jshint node: true */
+var webpack = require('webpack');
 var path = require('path');
 
-
 module.exports = {
-  context: path.join(__dirname),
-  entry: './example.js',
-
-  output: {
-    path: path.join(__dirname),
-    filename: './react-loading-simple.js',
-    libraryTarget: 'umd',
-    library: 'ReactLoadingSimple'
-  },
-
   module: {
     loaders: [
       {
-        test: /\.scss$/,
+        test: /\.js$/,
+        exclude: /node_modules/,
+        loader: 'babel-loader',
+        query: {presets:['react']},
+      },
+      {
+        test: /\.s?css$/,
         // Query parameters are passed to node-sass
         loader: 'style!css!sass?outputStyle=expanded&' +
           'includePaths[]=' + (path.resolve(__dirname, './node_modules'))
       },
-      {
-        test: /\.jsx$/,
-        exclude: /node_modules/,
-        loader: 'jsx-loader?harmony',
-      },
       {test: /\.svg$/, loader: 'raw-loader'}
-    ]
-  }
+    ],
+  },
+
+  entry: './src/react-loading-simple.js',
+
+  output: {
+    library: 'ReactLoadingSimple',
+    libraryTarget: 'umd',
+    path: 'dist',
+    filename: 'react-loading-simple.js',
+  },
+
+  externals: {
+    react: {
+      root: 'React',
+      commonjs: 'react',
+      commonjs2: 'react',
+      amd: 'react',
+    },
+    'react-dom': {
+      root: 'ReactDOM',
+      commonjs: 'react-dom',
+      commonjs2: 'react-dom',
+      amd: 'react-dom',
+    },
+  },
+
+  node: {
+    Buffer: false
+  },
+
 };
