@@ -1,6 +1,6 @@
 /* jshint node: true */
 
-var webpackConfig = require('./webpack.config.js');
+var webpackConfig = require('./webpack.demo.config.js');
 webpackConfig.devtool = 'inline-source-map';
 
 module.exports = function(config) {
@@ -28,7 +28,7 @@ module.exports = function(config) {
 
       'spec/spec-helper.js',
       'spec/**/*.spec.*',
-      { pattern: 'lib/**/*', watched: true, included: false }
+      { pattern: 'src/**/*', watched: true, included: false }
     ],
 
     preprocessors: {
