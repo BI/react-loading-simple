@@ -14,7 +14,7 @@ var ReactLoadingSimple = React.createClass({
 	},
 
 	render: function() {
-		var svg = svgSources[this.props.type];
+		var svg = (this.props.loading === false) ? '' : svgSources[this.props.type];
 		return (
 			<div className='react-loading-simple' dangerouslySetInnerHTML={{__html: svg}}>
 			</div>

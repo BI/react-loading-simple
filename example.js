@@ -8,9 +8,15 @@ var DemoLoading = React.createClass({
 		return {loading: true};
 	},
 
+	startStopLoading: function() {
+		this.setState({ loading: !this.state.loading })
+	},
+
 	render: function() {
+		var startStop = (this.state.loading === true) ? 'stop' : 'start'
 		return (
 			<div>
+				<button onClick={this.startStopLoading}>Click to {startStop} loading</button>
 				<ReactLoadingSimple loading={this.state.loading} type='balls' />
 				<ReactLoadingSimple loading={this.state.loading} type='bars'/>
 				<ReactLoadingSimple loading={this.state.loading} type='blank'/>
