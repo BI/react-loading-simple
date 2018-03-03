@@ -21,6 +21,8 @@ module.exports = function(config) {
       // shim to workaroud PhantomJS 1.x lack of `bind` support
       // see: https://github.com/ariya/phantomjs/issues/10522
       'node_modules/es5-shim/es5-shim.js',
+      //Poly fill so we can use es6 maps etc from react
+      'node_modules/babel-polyfill/dist/polyfill.js',
 
       // React is an external dependency of the component
       'node_modules/react/dist/react.js',
