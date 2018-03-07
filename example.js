@@ -1,8 +1,9 @@
 var React = require('react');
 var ReactDOM = require('react-dom');
+var createReactClass = require('create-react-class');
 var ReactLoadingSimple = require('./src/react-loading-simple.js');
 
-var DemoLoading = React.createClass({
+var DemoLoading = createReactClass({
 
 	getInitialState: function() {
 		return {loading: true};

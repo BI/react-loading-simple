@@ -1,12 +1,14 @@
 var React = require('react');
+var PropTypes = require('prop-types');
+var createReactClass = require('create-react-class');
 var svgSources = require('./svg');
 require('./react-loading-simple.scss');
 
-var ReactLoadingSimple = React.createClass({
+var ReactLoadingSimple = createReactClass({
 
 	propTypes: {
-		loading: React.PropTypes.bool,
-		type: React.PropTypes.string
+		loading: PropTypes.bool,
+		type: PropTypes.string
 	},
 
 	getDefaultProps: function() {
